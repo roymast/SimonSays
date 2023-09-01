@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Configurations
 {
@@ -11,8 +12,8 @@ namespace Configurations
         {
             using (StreamReader r = new StreamReader(_filePath))
             {
-                string json = r.ReadToEnd();
-                Config = JsonUtility.FromJson<T>(json);
+                string json = r.ReadToEnd();                
+                Config = JsonConvert.DeserializeObject<T>(json);
             }
         }
     }

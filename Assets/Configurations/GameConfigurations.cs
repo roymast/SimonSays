@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Configurations
@@ -8,24 +9,30 @@ namespace Configurations
     {
         public string _FileName;
         public IFIleReader _FIleReader;
-        public Config _Config;
+        public Root _Config;        
 
         [System.Serializable]
-        public class Config
+        public class Root
+        {
+            public ModeConfig Easy;
+            public ModeConfig Medium;
+            public ModeConfig Hard;
+        }        
+
+        [System.Serializable]
+        public class ModeConfig
         {
             public int GameButtons;
             public int PointEachStep;
             public int GameTime;
             public bool RepeatMode;
         }
-
-        // Start is called before the first frame update
+        
         void Awake()
         {
+            _Config = new Root();
             _FIleReader.SetFileName(_FileName);
-            _FIleReader.ReadConfig(ref _Config);
+            _FIleReader.ReadConfig(ref _Config);            
         }
-
-
     }
 }
