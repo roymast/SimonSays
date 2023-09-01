@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <GameButtons>4</GameButtons>
+  <PointEachStep>4</PointEachStep>
+  <RepeatMode>true</RepeatMode>
+  <GameTime>4</GameTime>
+</Config>

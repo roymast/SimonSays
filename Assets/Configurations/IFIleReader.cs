@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IFIleReader : MonoBehaviour
+namespace Configurations
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class IFIleReader : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        protected string _filePath;
+        public void SetFileName(string filePath)
+        {
+            _filePath = filePath;
+        }
+        public abstract void ReadConfig<T>(ref T Config);
     }
 }
