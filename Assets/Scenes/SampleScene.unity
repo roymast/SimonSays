@@ -238,8 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89db7c0a44c08e24495a7917021fbe64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FileName: C:\Users\royma\UnityProj\SimonSays\Assets\Configurations\Config.json
+  _FilePath: 
   _FIleReader: {fileID: 523555826}
+  configurationPath: {fileID: 1054705961}
   _Config:
     Easy:
       GameButtons: 0
@@ -295,3 +296,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6453da420820624c810ff45357bd75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1054705958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1054705960}
+  - component: {fileID: 1054705959}
+  - component: {fileID: 1054705961}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1054705959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054705958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34de73be4649f84e990e2d095a89068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editorArgumentFile: {fileID: 4900000, guid: 2bbac23075aa97a4aa1f25471567ca9b, type: 3}
+--- !u!4 &1054705960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054705958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1200845, y: 0.23496343, z: -0.004095102}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1054705961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054705958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55751d866e24aba4dbfd772445979307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReadCommandLineArgs: {fileID: 1054705959}

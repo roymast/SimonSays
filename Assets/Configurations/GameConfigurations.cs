@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using System.Linq;
 
 namespace Configurations
 {
     public class GameConfigurations : MonoBehaviour
     {
-        public string _FileName;
-        public IFIleReader _FIleReader;
-        public Root _Config;        
+        [SerializeField] string _FilePath;
+        [SerializeField] IFIleReader _FIleReader;
+        [SerializeField] ConfigurationPath configurationPath;
+        [SerializeField] Root _Config = new Root();        
 
         [System.Serializable]
         public class Root
@@ -27,12 +30,16 @@ namespace Configurations
             public int GameTime;
             public bool RepeatMode;
         }
-        
+
         void Awake()
         {
-            _Config = new Root();
-            _FIleReader.SetFileName(_FileName);
-            _FIleReader.ReadConfig(ref _Config);            
+            _FilePath = GetConfigPath();            
+            _FIleReader.SetFileName(_FilePath);
+            _FIleReader.ReadConfig(ref _Config);
+        }
+        string GetConfigPath()
+        {            
+            return configurationPath.GetConfigurationPath();
         }
     }
 }
