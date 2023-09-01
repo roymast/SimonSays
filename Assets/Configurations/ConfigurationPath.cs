@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class ConfigurationPath : MonoBehaviour
+namespace Configurations
 {
-    const string ConfigFileArgKey = "-configFile";
-    const int FilePathCommandLineIndex = 0;
-    public ReadCommandLineArgs ReadCommandLineArgs;
+    public class ConfigurationPath : MonoBehaviour
+    {
+        const string ConfigFileArgKey = "-configFile";
+        public ReadCommandLineArgs ReadCommandLineArgs;
 
-    public string GetConfigurationPath()
-    {        
-        string fileName = ReadCommandLineArgs.GetArgument(ConfigFileArgKey);
-        Debug.LogError("Application.dataPath " + Application.dataPath);        
-        string filePath = Application.dataPath;//ReadCommandLineArgs.GetArgumentByIndex(FilePathCommandLineIndex);        
-        
-        Debug.LogError("FileFullPath: "+Path.Combine(filePath, fileName));
-        return Path.Combine(filePath, fileName);
+        public string GetConfigurationPath()
+        {
+            string fileName = ReadCommandLineArgs.GetArgument(ConfigFileArgKey);
+            string filePath = Application.dataPath;
+
+            return Path.Combine(filePath, fileName);
+        }
     }
 }
