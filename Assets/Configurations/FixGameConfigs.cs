@@ -16,7 +16,7 @@ namespace Configurations
             config.Hard = FixButtonsAmount(config.Hard);
             return config;
         }
-        public static ModeConfig FixButtonsAmount(ModeConfig mode)
+        public static ModeManager.ModeConfig FixButtonsAmount(ModeManager.ModeConfig mode)
         {
             if (mode.GameButtons < MinButtonsAmount)
                 mode.GameButtons = MinButtonsAmount;
@@ -27,9 +27,9 @@ namespace Configurations
         //Just in case config wan't found
         public static Root SetConfigDefaultValues(Root gameConfig)
         {
-            ModeConfig Easy = new ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
-            ModeConfig Medium = new ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
-            ModeConfig Hard = new ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
+            ModeManager.ModeConfig Easy = new ModeManager.ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
+            ModeManager.ModeConfig Medium = new ModeManager.ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
+            ModeManager.ModeConfig Hard = new ModeManager.ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
             gameConfig.Easy = Easy;
             gameConfig.Medium = Medium;
             gameConfig.Hard = Hard;

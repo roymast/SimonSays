@@ -10,6 +10,7 @@ namespace Configurations
 {
     public class GameConfigurations : MonoBehaviour
     {
+        public static GameConfigurations Instance { get; private set; }
         [SerializeField] string _FilePath;
         [SerializeField] IFIleParser _FIleParser;
         [SerializeField] ConfigurationPath configurationPath;
@@ -18,22 +19,19 @@ namespace Configurations
         [System.Serializable]
         public class Root
         {
-            public ModeConfig Easy;
-            public ModeConfig Medium;
-            public ModeConfig Hard;
-        }        
-
-        [System.Serializable]
-        public class ModeConfig
-        {
-            public int GameButtons;
-            public int PointEachStep;
-            public int GameTime;
-            public bool RepeatMode;
-        }
+            public ModeManager.ModeConfig Easy;
+            public ModeManager.ModeConfig Medium;
+            public ModeManager.ModeConfig Hard;
+        }                
 
         void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+                return;
+            }            
+            Instance = this;            
             try
             {
                 _FilePath = configurationPath.GetConfigurationPath();
@@ -54,5 +52,19 @@ namespace Configurations
             if (_Config.Easy == null || _Config.Medium == null || _Config.Hard == null)
                 FixGameConfigs.SetConfigDefaultValues(_Config);            
         }                
+        public ModeManager.ModeConfig GetMode(string mode)
+        {
+            switch (mode.ToLower())
+            {
+                case "easy":
+                    return _Config.Easy;
+                case "medium":
+                    return _Config.Medium;
+                case "hard":
+                    return _Config.Hard;
+                default:
+                    return _Config.Easy;                    
+            }
+        }
     }
 }
