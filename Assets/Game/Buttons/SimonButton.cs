@@ -20,6 +20,10 @@ public class SimonButton : MonoBehaviour
     public void OnClick()
     {
         OnSimonButtonClick?.Invoke(myIndex);
+        StartClickAnimation();
+    }
+    public void StartClickAnimation()
+    {
         StartCoroutine(clickAnimation());
     }
     IEnumerator clickAnimation()

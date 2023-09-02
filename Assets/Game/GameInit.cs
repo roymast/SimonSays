@@ -8,10 +8,12 @@ public class GameInit : MonoBehaviour
     [SerializeField] Transform buttonsContainer;
     [SerializeField] SimonButton buttonPrefab;
     [SerializeField] SimonButton[] buttons;
-    // Start is called before the first frame update
-    void Start()
+    public int GetButtonsAmount { get { return buttons.Length; } }
+    
+    void Awake()
     {
-        CreateButtons(ModeManager.ModeConfigs.GameButtons);
+        //CreateButtons(ModeManager.ModeConfigs.GameButtons);
+        CreateButtons(4);
     }
     SimonButton[] CreateButtons(int amount)
     {
@@ -22,5 +24,9 @@ public class GameInit : MonoBehaviour
             buttons[i].Init(i);
         }
         return buttons;
-    }        
+    }            
+    public SimonButton[] GetButtons()
+    {
+        return buttons;
+    }
 }
