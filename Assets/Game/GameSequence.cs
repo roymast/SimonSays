@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class GameSequence : MonoBehaviour
 {
-    public Action OnSequenceFinished;    
+    public Action OnSequenceFinished;
+    public PointsManager PointsManager;
     IGameSequenceRepeat GameSequenceRepeat;
     [SerializeField] GameInit gameInit;
     [SerializeField] List<int> buttonsSequence = new List<int>();
@@ -40,6 +41,7 @@ public class GameSequence : MonoBehaviour
     void AddToSequence()
     {        
         indexInOrder = 0;
+        PointsManager.AddPoints();
         buttonsSequence.Add(UnityEngine.Random.Range(0, buttonsAmount));
         StartCoroutine(GameSequenceRepeat.RepeatSequence(buttonsSequence));
         Debug.Log("next in sequence: " + buttonsSequence[buttonsSequence.Count - 1]);

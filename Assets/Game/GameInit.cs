@@ -12,7 +12,6 @@ public class GameInit : MonoBehaviour
     
     void Awake()
     {
-        //CreateButtons(ModeManager.ModeConfigs.GameButtons);
         CreateButtons(6);        
         GameSequenceRepeatFactory = new GameSequenceRepeatFactory(buttons, true);
     }
@@ -23,11 +22,7 @@ public class GameInit : MonoBehaviour
             buttons[i] = SimonButtonFactory.GetSimonButtonByIndex(i);        
 
         return buttons;
-    }            
-    //public SimonButton[] GetButtons()
-    //{
-    //    return buttons;
-    //}
+    }                
     public IGameSequenceRepeat GetGameSequenceRepeat()
     {
         return GameSequenceRepeatFactory.GetGameSequenceRepeat();//ModeManager.ModeConfigs.RepeatMode);
