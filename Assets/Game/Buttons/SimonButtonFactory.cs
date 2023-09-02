@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class SimonButtonFactory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Transform buttonsContainer;
+    [SerializeField] SimonButton buttonPrefab;    
+    SimonButtonColorFactory ColorFactory;
+    SimonButtonSoundFactory SoundFactory;
+    private void Awake()
     {
-        
+        InitFactories();
+        SoundFactory.InitAudioClips();
     }
-
-    // Update is called once per frame
-    void Update()
+    void InitFactories()
     {
-        
+        ColorFactory = new SimonButtonColorFactory();
+        SoundFactory = new SimonButtonSoundFactory();
+    }
+    public SimonButton GetSimonButtonByIndex(int index)
+    {
+        SimonButton s = Instantiate(buttonPrefab, buttonsContainer);        
+        s.SetIndex(index);
+        s.SetColor(ColorFactory.GetColorByIndex(index));        
+        s.SetSound(SoundFactory.GetSoundByIndex(index));
+        return s;
     }
 }

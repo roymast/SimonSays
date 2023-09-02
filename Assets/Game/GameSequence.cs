@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class GameSequence : MonoBehaviour
 {
-    public Action OnSequenceFinished;
-    public IGameSequenceRepeat GameSequenceRepeat;
+    public Action OnSequenceFinished;    
+    IGameSequenceRepeat GameSequenceRepeat;
     [SerializeField] GameInit gameInit;
     [SerializeField] List<int> buttonsSequence = new List<int>();
     int indexInOrder = 0;
     int buttonsAmount = 0;
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         buttonsAmount = gameInit.GetButtonsAmount;
+        GameSequenceRepeat = gameInit.GetGameSequenceRepeat();
         AddToSequence();
+    }
+    public void SetGameRepeat(IGameSequenceRepeat gameSequenceRepeat)
+    {
+        GameSequenceRepeat = gameSequenceRepeat;
     }
     private void OnEnable()
     {
@@ -36,7 +41,7 @@ public class GameSequence : MonoBehaviour
     {        
         indexInOrder = 0;
         buttonsSequence.Add(UnityEngine.Random.Range(0, buttonsAmount));
-        GameSequenceRepeat.RepeatSequence(buttonsSequence);
+        StartCoroutine(GameSequenceRepeat.RepeatSequence(buttonsSequence));
         Debug.Log("next in sequence: " + buttonsSequence[buttonsSequence.Count - 1]);
     }
 }

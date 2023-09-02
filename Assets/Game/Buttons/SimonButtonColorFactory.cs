@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimonButtonColorFactory : MonoBehaviour
+public class SimonButtonColorFactory
 {
-    // Start is called before the first frame update
-    void Start()
+    public Color[] colors;
+    public SimonButtonColorFactory()
     {
-        
+        colors = new Color[] { Color.red, Color.blue, Color.green, Color.yellow, Color.cyan, Color.gray };
     }
-
-    // Update is called once per frame
-    void Update()
+    public Color GetColorByIndex(int index)
     {
-        
+        if (index < colors.Length)
+            return colors[index];
+        else
+            return Color.black;
     }
 }

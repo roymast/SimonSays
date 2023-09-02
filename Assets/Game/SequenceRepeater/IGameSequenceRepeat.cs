@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class IGameSequenceRepeat : MonoBehaviour
+public abstract class IGameSequenceRepeat
 {
     public Action OnSequenceRepeatFinished;
-    public SimonButton[] simonButtons;
+    protected SimonButton[] simonButtons;    
 
-    public GameInit gameInit;
-    private void Start()
+    public IGameSequenceRepeat(SimonButton[] simonButtons)
     {
-        simonButtons = gameInit.GetButtons();
-    }
+        this.simonButtons = simonButtons;
+    }    
     public abstract IEnumerator RepeatSequence(List<int> buttonsSequence);    
 }
