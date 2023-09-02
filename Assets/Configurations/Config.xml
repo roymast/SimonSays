@@ -13,7 +13,7 @@
     <GameTime>4</GameTime>
   </Medium>
   <Hard>
-    <GameButtons>4</GameButtons>
+    <GameButtons>6</GameButtons>
     <PointEachStep>4</PointEachStep>
     <RepeatMode>true</RepeatMode>
     <GameTime>4</GameTime>
