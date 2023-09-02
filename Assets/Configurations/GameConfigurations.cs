@@ -34,15 +34,25 @@ namespace Configurations
 
         void Awake()
         {
-            _FilePath = GetConfigPath();
-            _FIleParser = FileParserFactory.GetFileReder(_FilePath.Split(".")[1]);
-            Debug.LogError(_FIleParser.GetType());
-            _FIleParser.SetFileName(_FilePath);
-            _Config = _FIleParser.ParseFile(_Config);
+            try
+            {
+                _FilePath = configurationPath.GetConfigurationPath();
+                _FIleParser = FileParserFactory.GetFileReder(_FilePath.Split(".")[1]);
+                Debug.LogError(_FIleParser.GetType());
+                _FIleParser.SetFileName(_FilePath);
+                _Config = _FIleParser.ParseFile(_Config);
+                FixGameConfigs.FixButtonsAmount(_Config);
+            }
+            catch (Exception)
+            {
+                FixGameConfigs.SetConfigDefaultValues(_Config);
+                throw;
+            }            
         }
-        string GetConfigPath()
-        {            
-            return configurationPath.GetConfigurationPath();
-        }
+        private void Start()
+        {
+            if (_Config.Easy == null || _Config.Medium == null || _Config.Hard == null)
+                FixGameConfigs.SetConfigDefaultValues(_Config);            
+        }                
     }
 }

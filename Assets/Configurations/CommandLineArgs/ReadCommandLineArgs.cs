@@ -25,7 +25,7 @@ public class ReadCommandLineArgs : MonoBehaviour
         args = Environment.GetCommandLineArgs();
 #endif
     }
-    public string GetArgument(string argumentKey)
+    public string GetArgumentByKey(string argumentKey)
     {
         if (args == null || args.Length == 0)
             InitArgs();
