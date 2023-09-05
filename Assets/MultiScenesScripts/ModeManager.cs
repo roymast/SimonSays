@@ -13,7 +13,7 @@ public class ModeManager : SingletonBehaviour<ModeManager>
         public int GameTime;
         public bool RepeatMode;
     }
-    public static string modeSelected { get; private set; }
+    public static string PlayerName;
     public static ModeConfig modeConfig;
     public static ModeConfig ModeConfigs
     {
@@ -31,13 +31,26 @@ public class ModeManager : SingletonBehaviour<ModeManager>
         }
         set { modeConfig = value; }
     }
+    [SerializeField] TMPro.TMP_InputField NameBox;
 
-
-    [SerializeField] static Configurations.GameConfigurations GameConfigurations;    
-    public void SelectLevel(string level)
+    static Configurations.GameConfigurations GameConfigurations;
+    private void Start()
     {
-        modeSelected = level;
+        GameConfigurations = FindObjectOfType<Configurations.GameConfigurations>();
+        if (NameBox != null && PlayerName != string.Empty)
+            NameBox.text = PlayerName;
+    }
+    public void SelectLevel(string level)
+    {        
+        if (NameBox.text == string.Empty)
+            return;
+        PlayerName = NameBox.text;
+
         ModeConfigs = GameConfigurations.GetMode(level);
         SceneManager.LoadScene("Game");
-    }    
+    }
+    public void SetPlayerName(string name)
+    {
+        PlayerName = name;
+    }
 }

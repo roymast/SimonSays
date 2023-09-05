@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOverScreen : GameState
 {
@@ -13,6 +14,14 @@ public class GameOverScreen : GameState
     private void Start()
     {
         GameOverCanvas.gameObject.SetActive(false);        
+    }
+    public void ReturnHome()
+    {
+        SceneManager.LoadScene("StartScreen");
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene("Game");
     }
     void InsertCurrentPlayerScore(string playerName, int playerScore)
     {

@@ -1,1 +1,1 @@
--configFile Configurations/config.xml
+-configFile Configurations/config.json

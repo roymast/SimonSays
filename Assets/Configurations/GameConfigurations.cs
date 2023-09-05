@@ -35,8 +35,7 @@ namespace Configurations
             try
             {
                 _FilePath = configurationPath.GetConfigurationPath();
-                _FIleParser = FileParserFactory.GetFileReder(_FilePath.Split(".")[1]);
-                Debug.LogError(_FIleParser.GetType());
+                _FIleParser = FileParserFactory.GetFileReder(_FilePath.Split(".")[1]);                
                 _FIleParser.SetFileName(_FilePath);
                 _Config = _FIleParser.ParseFile(_Config);
                 FixGameConfigs.FixButtonsAmount(_Config);

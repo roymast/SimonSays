@@ -18,7 +18,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        playerName = "testing";
+        playerName = ModeManager.PlayerName;
         GameTimer.OnTimeUp += OnTimeUp;
         GameSequence.OnWrongSequence += OnWrongSequence;
         GameSequence.OnSequenceFinished += OnSequenceFinished;        
