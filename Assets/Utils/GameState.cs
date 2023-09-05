@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class GameState : MonoBehaviour
 {
-    public abstract void EnterState();
-    public abstract void UpdateState();
+    public abstract void EnterState();    
     public abstract void ExitState();    
 }

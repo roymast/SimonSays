@@ -21,6 +21,13 @@ public class LeaderboardScreen : MonoBehaviour
         leaderBoardData = LeaderboardData.ReadFromLeaderboard();
         leaderboardLines = CreateAllLeaderboardLines(leaderBoardData);
     }
+    public void HighlightPlayer(string playerName)
+    {
+        foreach (LeaderboardLine leaderboardLine in leaderboardLines)
+            if (leaderboardLine.Name.text == playerName)
+                leaderboardLine.Highligh();
+    }    
+    
     public void HideLeaderboard()
     {
         LeaderboardContainer.gameObject.SetActive(false);

@@ -6,11 +6,15 @@ using System;
 
 public class GameTimer : MonoBehaviour
 {
+    [SerializeField] GameManager GameManager;
     public Action OnTimeUp;
     [SerializeField] TextMeshProUGUI timeText;
     public int totalTime;
-    public bool isTimerUp { get { return totalTime <= 0; } }    
-
+    public bool isTimerUp { get { return totalTime <= 0; } }
+    private void Start()
+    {
+        GameManager.OnGameOver += () => enabled = false;
+    }
     // Update is called once per frame
     void Update()
     {

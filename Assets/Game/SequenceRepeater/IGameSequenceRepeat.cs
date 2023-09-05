@@ -14,11 +14,7 @@ public abstract class IGameSequenceRepeat : GameState
     public override void EnterState()
     {
         StartCoroutine(RepeatSequence(_GameSequence.buttonsSequence));
-    }
-
-    public override void UpdateState()
-    {        
-    }
+    }    
 
     public override void ExitState()
     {

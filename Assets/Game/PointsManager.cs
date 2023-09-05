@@ -15,7 +15,7 @@ public class PointsManager : MonoBehaviour
     {        
         defaultPointsToAdd = ModeManager.ModeConfigs.PointEachStep;
         gameSequence.OnSequenceFinished += AddPoints;
-        SetPoints(0);
+        SetPoints(0);        
     }        
     public void SetPoints(int points)
     {

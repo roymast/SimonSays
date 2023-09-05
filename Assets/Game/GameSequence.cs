@@ -15,28 +15,22 @@ public class GameSequence : GameState
     {
         buttonsSequence = new LinkedList<int>();        
         AddToSequence();
+        GameManager.Instance.OnGameOver += () => ExitState();
     }
     public override void EnterState()
-    {
-        Debug.Log("Enter State");
+    {        
         SimonButton.OnSimonButtonClick += SimonButtonClicked;
-    }
-
-    public override void UpdateState()
-    {
-    }
+    }    
 
     public override void ExitState()
-    {
-        Debug.Log("Exit State");
+    {        
         SimonButton.OnSimonButtonClick -= SimonButtonClicked;
     }    
     void SimonButtonClicked(int buttonIndex)
-    {
-        Debug.Log($"pressed: {buttonIndex} | Correct: {current.Value}");
+    {        
         if (current.Value != buttonIndex)
-        {            
-            GameOver();
+        {
+            OnWrongSequence?.Invoke();            
             return;
         }
 
@@ -47,19 +41,12 @@ public class GameSequence : GameState
             AddToSequence();
             OnSequenceFinished?.Invoke();
         }
-    }
-
-    private void GameOver()
-    {
-        OnWrongSequence?.Invoke();
-        ExitState();
-    }
+    }               
     
     void AddToSequence()
     {
         buttonsSequence.AddLast(new LinkedListNode<int>(GetRandomButton()));
-        current = buttonsSequence.First;
-        ExitState();
+        current = buttonsSequence.First;        
         Debug.Log("next in sequence: " + buttonsSequence.Last.Value);
     }
     int GetRandomButton()
