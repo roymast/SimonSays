@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSequenceReapetLast : IGameSequenceRepeat
-{
-    public GameSequenceReapetLast(SimonButton[] simonButtons) : base(simonButtons)
-    {
-    }
-
-    public override IEnumerator RepeatSequence(List<int> buttonSequence)
-    {
+{    
+    public override IEnumerator RepeatSequence(LinkedList<int> buttonSequence)
+    {        
         yield return new WaitForSeconds(1);
-        simonButtons[buttonSequence[buttonSequence.Count-1]].ClickAnimationAndSound();
+        LinkedListNode<int> temp = buttonSequence.Last;
+        simonButtons[temp.Value].ClickAnimationAndSound();
+        ExitState();
     }    
 }

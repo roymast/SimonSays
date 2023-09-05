@@ -5,15 +5,17 @@ using TMPro;
 
 public class PointsManager : MonoBehaviour
 {
+    [SerializeField] GameSequence gameSequence;
     [SerializeField] TextMeshProUGUI pointsText;
     public int pointsValue { get; private set; }
     public int defaultPointsToAdd = 1;
 
     // Start is called before the first frame update
     void Start()
-    {
-        SetPoints(-1);
-        defaultPointsToAdd = ModeManager.ModeConfigs.PointEachStep;        
+    {        
+        defaultPointsToAdd = ModeManager.ModeConfigs.PointEachStep;
+        gameSequence.OnSequenceFinished += AddPoints;
+        SetPoints(0);
     }        
     public void SetPoints(int points)
     {

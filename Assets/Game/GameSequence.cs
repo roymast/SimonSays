@@ -3,47 +3,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSequence : MonoBehaviour
+public class GameSequence : GameState
 {
     public Action OnSequenceFinished;
-    public PointsManager PointsManager;
-    IGameSequenceRepeat GameSequenceRepeat;
+    public Action OnWrongSequence;
     [SerializeField] GameInit gameInit;
-    [SerializeField] List<int> buttonsSequence = new List<int>();
-    int indexInOrder = 0;
-    int buttonsAmount = 0;
+    public LinkedList<int> buttonsSequence { get; private set; }
+    LinkedListNode<int> current;    
     // Start is called before the first frame update
-    void Start()
-    {        
-        buttonsAmount = gameInit.GetButtonsAmount;
-        GameSequenceRepeat = gameInit.GetGameSequenceRepeat();
+    void Awake()
+    {
+        buttonsSequence = new LinkedList<int>();        
         AddToSequence();
     }
-    public void SetGameRepeat(IGameSequenceRepeat gameSequenceRepeat)
+    public override void EnterState()
     {
-        GameSequenceRepeat = gameSequenceRepeat;
-    }
-    private void OnEnable()
-    {
+        Debug.Log("Enter State");
         SimonButton.OnSimonButtonClick += SimonButtonClicked;
     }
-    private void OnDisable()
+
+    public override void UpdateState()
     {
-        SimonButton.OnSimonButtonClick -= SimonButtonClicked;
     }
+
+    public override void ExitState()
+    {
+        Debug.Log("Exit State");
+        SimonButton.OnSimonButtonClick -= SimonButtonClicked;
+    }    
     void SimonButtonClicked(int buttonIndex)
     {
-        if (buttonsSequence[indexInOrder] == buttonIndex)
-            indexInOrder++;
-        if (indexInOrder >= buttonsSequence.Count)
+        Debug.Log($"pressed: {buttonIndex} | Correct: {current.Value}");
+        if (current.Value != buttonIndex)
+        {            
+            GameOver();
+            return;
+        }
+
+        if (current.Next != null)
+            current = current.Next;
+        else
+        {
             AddToSequence();
+            OnSequenceFinished?.Invoke();
+        }
     }
+
+    private void GameOver()
+    {
+        OnWrongSequence?.Invoke();
+        ExitState();
+    }
+    
     void AddToSequence()
-    {        
-        indexInOrder = 0;
-        PointsManager.AddPoints();
-        buttonsSequence.Add(UnityEngine.Random.Range(0, buttonsAmount));
-        StartCoroutine(GameSequenceRepeat.RepeatSequence(buttonsSequence));
-        Debug.Log("next in sequence: " + buttonsSequence[buttonsSequence.Count - 1]);
+    {
+        buttonsSequence.AddLast(new LinkedListNode<int>(GetRandomButton()));
+        current = buttonsSequence.First;
+        ExitState();
+        Debug.Log("next in sequence: " + buttonsSequence.Last.Value);
     }
+    int GetRandomButton()
+    {
+        return UnityEngine.Random.Range(0, gameInit.GetButtonsAmount);
+    }    
 }

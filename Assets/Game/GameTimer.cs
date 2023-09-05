@@ -6,15 +6,10 @@ using System;
 
 public class GameTimer : MonoBehaviour
 {
-    public Action TimeUp;
+    public Action OnTimeUp;
     [SerializeField] TextMeshProUGUI timeText;
-    public int totalTime;    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        totalTime = 4;
-    }
+    public int totalTime;
+    public bool isTimerUp { get { return totalTime <= 0; } }    
 
     // Update is called once per frame
     void Update()
@@ -23,7 +18,7 @@ public class GameTimer : MonoBehaviour
         timeText.text = "TimeLeft: " + ((int)(totalTime - Time.time)).ToString();
         if (timeLeft <= 0)
         {
-            TimeUp?.Invoke();
+            OnTimeUp?.Invoke();
             enabled = false;
         }
     }

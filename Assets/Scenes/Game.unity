@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37f01eb02ba08d489f1fdb2d214cde4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSequence: {fileID: 0}
   pointsText: {fileID: 155511679}
   defaultPointsToAdd: 1
 --- !u!4 &464967044
@@ -823,9 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2070c6f37debb14492e6c22304c5abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointsManager: {fileID: 464967043}
   gameInit: {fileID: 1558993988}
-  buttonsSequence: 
 --- !u!1 &1558993987
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +856,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimonButtonFactory: {fileID: 29102524}
   buttons: []
+  PointsManager: {fileID: 464967043}
+  GameTimer: {fileID: 113587907}
+  gameSequenceRepeat: {fileID: 0}
+  GameSequence: {fileID: 1480447088}
 --- !u!4 &1558993989
 Transform:
   m_ObjectHideFlags: 0

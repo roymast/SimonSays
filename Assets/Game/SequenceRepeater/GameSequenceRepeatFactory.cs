@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class GameSequenceRepeatFactory
 {
-    [SerializeField] SimonButton[] simonButtons;
-    [SerializeField] bool isRepeat;
-    public GameSequenceRepeatFactory(SimonButton[] simonButtons, bool isRepeat)
+    GameSequence GameSequence;
+    SimonButton[] simonButtons;
+    bool isRepeat;
+
+
+    public GameSequenceRepeatFactory(SimonButton[] simonButtons, bool isRepeat, GameSequence gameSequence)
     {
         this.simonButtons = simonButtons;
         this.isRepeat = isRepeat;
+        this.GameSequence = gameSequence;
     }
-    public IGameSequenceRepeat GetGameSequenceRepeat()
-    {        
+    public IGameSequenceRepeat GetGameSequenceRepeat(GameObject _GameObject)
+    {
+        IGameSequenceRepeat gameRepeat;
         if (isRepeat)
-            return new GameSequenceReapetAll(simonButtons);
+            gameRepeat = _GameObject.AddComponent<GameSequenceReapetAll>();
         else
-            return new GameSequenceReapetLast(simonButtons);
+            gameRepeat = _GameObject.AddComponent<GameSequenceReapetLast>();
+        gameRepeat._GameSequence = this.GameSequence;
+        gameRepeat.simonButtons = this.simonButtons;
+        return gameRepeat;
     }
 }

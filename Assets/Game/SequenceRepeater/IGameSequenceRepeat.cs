@@ -3,14 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class IGameSequenceRepeat
+public abstract class IGameSequenceRepeat : GameState
 {
     public Action OnSequenceRepeatFinished;
-    protected SimonButton[] simonButtons;    
+    public SimonButton[] simonButtons;    
+    public GameSequence _GameSequence;    
+                            
+    public abstract IEnumerator RepeatSequence(LinkedList<int> buttonsSequence);
 
-    public IGameSequenceRepeat(SimonButton[] simonButtons)
+    public override void EnterState()
     {
-        this.simonButtons = simonButtons;
-    }    
-    public abstract IEnumerator RepeatSequence(List<int> buttonsSequence);    
+        StartCoroutine(RepeatSequence(_GameSequence.buttonsSequence));
+    }
+
+    public override void UpdateState()
+    {        
+    }
+
+    public override void ExitState()
+    {
+        OnSequenceRepeatFinished?.Invoke();
+    }
 }

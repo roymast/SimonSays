@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ModeManager : MonoBehaviour
+public class ModeManager : SingletonBehaviour<ModeManager>
 {
     [System.Serializable]
     public class ModeConfig
@@ -13,24 +13,27 @@ public class ModeManager : MonoBehaviour
         public int GameTime;
         public bool RepeatMode;
     }
-
-    public static ModeManager Instance { get; private set; }
     public static string modeSelected { get; private set; }
-    public static ModeConfig ModeConfigs;// { get; private set; }
+    public static ModeConfig modeConfig;
+    public static ModeConfig ModeConfigs
+    {
+        get
+        {
+            if (modeConfig == null)
+            {
+                modeConfig = new ModeConfig();
+                modeConfig.GameButtons = 4;
+                modeConfig.GameTime = 40;
+                modeConfig.PointEachStep = 3;
+                modeConfig.RepeatMode = true;
+            }
+            return modeConfig;
+        }
+        set { modeConfig = value; }
+    }
+
 
     [SerializeField] static Configurations.GameConfigurations GameConfigurations;    
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;            
-            GameConfigurations = Configurations.GameConfigurations.Instance;            
-        }        
-    }
     public void SelectLevel(string level)
     {
         modeSelected = level;
