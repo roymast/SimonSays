@@ -7,18 +7,32 @@ public class LeaderboardScreen : MonoBehaviour
 {
     LeaderboardData LeaderboardData;
     [SerializeField] LeaderboardLine LeaderboardLinePrefab;
-    
+    [SerializeField] Transform LeaderboardContainer;
+    LeaderboardData.LeaderboardEntryData[] leaderBoardData;
+    LeaderboardLine[] leaderboardLines;
+
     // Start is called before the first frame update
     void Start()
     {
         LeaderboardData = new LeaderboardData();
-        LeaderboardData.WriteToLeaderboard("roy1", 100);
-        LeaderboardData.WriteToLeaderboard("roy2", 35);
-        LeaderboardData.WriteToLeaderboard("roy3", 5);
-        LeaderboardData.WriteToLeaderboard("roy4", 600);
-        PrintLeaderBoard(LeaderboardData.ReadFromLeaderboard());
+        leaderBoardData = LeaderboardData.ReadFromLeaderboard();
+        leaderboardLines = CreateAllLeaderboardLines(leaderBoardData);
+    }
+    LeaderboardLine[] CreateAllLeaderboardLines(LeaderboardData.LeaderboardEntryData[] leaderBoard)
+    {
+        leaderboardLines = new LeaderboardLine[leaderBoard.Length];
+        for (int i = 0; i < leaderBoard.Length; i++)
+            leaderboardLines[i] = InstantiateNewLeaderboardLine(leaderBoard[i]);
 
-    }    
+        return leaderboardLines;
+    }
+    LeaderboardLine InstantiateNewLeaderboardLine(LeaderboardData.LeaderboardEntryData leaderboardEntryData)
+    {
+        LeaderboardLine newLeaderboardLine = Instantiate(LeaderboardLinePrefab, LeaderboardContainer);
+        newLeaderboardLine.Name.text = leaderboardEntryData.Name;
+        newLeaderboardLine.Score.text = leaderboardEntryData.Score.ToString();
+        return newLeaderboardLine;
+    }
     void PrintLeaderBoard(LeaderboardData.LeaderboardEntryData[] orderedEnumerable)
     {
         string s = "";
