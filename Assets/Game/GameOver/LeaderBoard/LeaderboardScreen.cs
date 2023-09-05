@@ -4,19 +4,32 @@ using System.Linq;
 using UnityEngine;
 
 public class LeaderboardScreen : MonoBehaviour
-{
+{    
     LeaderboardData LeaderboardData;
     [SerializeField] LeaderboardLine LeaderboardLinePrefab;
-    [SerializeField] Transform LeaderboardContainer;
+    [SerializeField] Transform LeaderboardContainer;    
     LeaderboardData.LeaderboardEntryData[] leaderBoardData;
     LeaderboardLine[] leaderboardLines;
+    public void InsertNewPlayerScore(string playerName, int playerScore)
+    {
+        LeaderboardData.WriteToLeaderboard(playerName, playerScore);
+    }
+    public void DisplayLeaderboard()
+    {
+        LeaderboardContainer.gameObject.SetActive(true);
+        
+        leaderBoardData = LeaderboardData.ReadFromLeaderboard();
+        leaderboardLines = CreateAllLeaderboardLines(leaderBoardData);
+    }
+    public void HideLeaderboard()
+    {
+        LeaderboardContainer.gameObject.SetActive(false);
+    }    
 
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         LeaderboardData = new LeaderboardData();
-        leaderBoardData = LeaderboardData.ReadFromLeaderboard();
-        leaderboardLines = CreateAllLeaderboardLines(leaderBoardData);
     }
     LeaderboardLine[] CreateAllLeaderboardLines(LeaderboardData.LeaderboardEntryData[] leaderBoard)
     {
@@ -42,5 +55,5 @@ public class LeaderboardScreen : MonoBehaviour
             s += "\n";
         }
         Debug.Log(s);
-    }
+    }    
 }

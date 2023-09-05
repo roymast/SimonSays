@@ -11,13 +11,13 @@ public class GameManager : SingletonBehaviour<GameManager>
     [SerializeField] GameSequence GameSequence;
     [SerializeField] IGameSequenceRepeat GameSequenceRepeat;
     [SerializeField] GameTimer GameTimer;
-    string playerName;
-    public bool isRunning { get { return GameTimer.isTimerUp ; } }       
-
+    [SerializeField] GameOverScreen GameOverScreen;
+    public string playerName { get; private set; }        
     
     // Start is called before the first frame update
     void Start()
     {
+        playerName = "testing";
         GameTimer.OnTimeUp += OnTimeUp;
         GameSequence.OnWrongSequence += OnWrongSequence;
         GameSequence.OnSequenceFinished += OnSequenceFinished;        
@@ -37,13 +37,15 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         GameSequence.OnSequenceFinished -= OnSequenceFinished;
         GameSequenceRepeat.OnSequenceRepeatFinished -= OnSequenceRepeatFinished;
-        throw new NotImplementedException();
+        GameTimer.enabled = false;
+        GameOverScreen.InsertCurrentPlayerScore(playerName, PointsManager.pointsValue);
+        GameOverScreen.EnterState();       
     }
 
     private void OnTimeUp()
     {
         GameSequence.OnSequenceFinished -= OnSequenceFinished;
         GameSequenceRepeat.OnSequenceRepeatFinished -= OnSequenceRepeatFinished;
-        throw new NotImplementedException();
+        GameOverScreen.EnterState();
     }
 }

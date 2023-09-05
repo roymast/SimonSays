@@ -21,5 +21,5 @@ public class GameTimer : MonoBehaviour
             OnTimeUp?.Invoke();
             enabled = false;
         }
-    }
+    }    
 }
