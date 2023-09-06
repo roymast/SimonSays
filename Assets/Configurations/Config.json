@@ -1,6 +1,6 @@
 {
   "Easy": {
-    "GameButtons": 4,
+    "GameButtons": "4",
     "PointEachStep": 1,
     "GameTime": 50,
     "RepeatMode": true

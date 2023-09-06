@@ -49,7 +49,13 @@ namespace Configurations
             }
         }
         public static Root LoadConfig(string filePath)
-        {            
+        {
+            if (string.IsNullOrEmpty(filePath))
+                return null;
+            
+            if (filePath.Split('.').Length != 2)
+                return null;
+
             FIleParser fileParser = FileParserFactory.GetFileReder(filePath.Split(".")[1]);            
             Root config = fileParser.ParseFile(new Root(), filePath);
             config = FixGameConfigs.FixButtonsAmount(config);

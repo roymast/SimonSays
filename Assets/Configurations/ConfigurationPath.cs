@@ -17,8 +17,10 @@ namespace Configurations
         }
         public static string GetPath(string fileName)
         {
-            string filePath = Application.dataPath;
+            if (string.IsNullOrEmpty(fileName))
+                return "";
 
+            string filePath = Application.dataPath;
             return Path.Combine(filePath, fileName);
         }
     }

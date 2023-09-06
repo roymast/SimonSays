@@ -7,8 +7,8 @@ namespace Configurations
 {
     public class FixGameConfigs
     {
-        const int MinButtonsAmount = 2;
-        const int MaxButtonsAmount = 6;
+        public const int MinButtonsAmount = 2;
+        public const int MaxButtonsAmount = 6;
         public static Root FixButtonsAmount(Root config)
         {
             config.Easy = FixButtonsAmount(config.Easy);
