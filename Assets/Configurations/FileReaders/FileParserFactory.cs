@@ -9,7 +9,7 @@ namespace FileParser
     /// </summary>
     public static class FileParserFactory
     {
-        public static IFIleParser GetFileReder(string extention)
+        public static FIleParser GetFileReder(string extention)
         {
             switch (extention.ToLower())
             {

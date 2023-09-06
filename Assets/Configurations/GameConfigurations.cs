@@ -12,17 +12,25 @@ namespace Configurations
     {
         public static GameConfigurations Instance { get; private set; }
         [SerializeField] string _FilePath;
-        [SerializeField] IFIleParser _FIleParser;
+        [SerializeField] FIleParser _FIleParser;
         [SerializeField] ConfigurationPath configurationPath;
         [SerializeField] Root _Config = new Root();        
 
         [System.Serializable]
         public class Root
         {
-            public ModeManager.ModeConfig Easy;
-            public ModeManager.ModeConfig Medium;
-            public ModeManager.ModeConfig Hard;
-        }                
+            public ModeConfig Easy;
+            public ModeConfig Medium;
+            public ModeConfig Hard;
+        }
+        [System.Serializable]
+        public class ModeConfig
+        {
+            public int GameButtons;
+            public int PointEachStep;
+            public int GameTime;
+            public bool RepeatMode;
+        }
 
         void Awake()
         {
@@ -31,27 +39,28 @@ namespace Configurations
                 Destroy(this);
                 return;
             }            
-            Instance = this;            
-            try
-            {
-                _FilePath = configurationPath.GetConfigurationPath();
-                _FIleParser = FileParserFactory.GetFileReder(_FilePath.Split(".")[1]);                
-                _FIleParser.SetFileName(_FilePath);
-                _Config = _FIleParser.ParseFile(_Config);
-                FixGameConfigs.FixButtonsAmount(_Config);
-            }
-            catch (Exception)
+            Instance = this;
+            _FilePath = configurationPath.GetConfigurationPath();
+            _Config = LoadConfig(_FilePath);
+            if (_Config == null)
             {
                 FixGameConfigs.SetConfigDefaultValues(_Config);
-                throw;
-            }            
+                Debug.LogError("no config was found, default values were set");
+            }
         }
+        public static Root LoadConfig(string filePath)
+        {            
+            FIleParser fileParser = FileParserFactory.GetFileReder(filePath.Split(".")[1]);            
+            Root config = fileParser.ParseFile(new Root(), filePath);
+            config = FixGameConfigs.FixButtonsAmount(config);
+            return config;
+        }        
         private void Start()
         {
             if (_Config.Easy == null || _Config.Medium == null || _Config.Hard == null)
                 FixGameConfigs.SetConfigDefaultValues(_Config);            
         }                
-        public ModeManager.ModeConfig GetMode(string mode)
+        public ModeConfig GetMode(string mode)
         {
             switch (mode.ToLower())
             {

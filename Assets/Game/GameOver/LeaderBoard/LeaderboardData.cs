@@ -20,7 +20,7 @@ namespace Leaderboard
                 Name = name;
                 Score = score;
             }
-            public string ToString()
+            public override string ToString()
             {
                 return $"Name: {Name} Score: {Score}";
             }

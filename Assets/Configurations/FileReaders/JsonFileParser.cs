@@ -9,12 +9,12 @@ namespace FileParser
     /// <summary>
     /// FileParser that parse json files
     /// </summary>
-    public class JsonFileParser : IFIleParser
+    public class JsonFileParser : FIleParser
     {                     
-        public override T ParseFile<T>(T Output)
+        public override T ParseFile<T>(T Output, string filePath)
         {
             T Config;
-            using (StreamReader r = new StreamReader(_filePath))
+            using (StreamReader r = new StreamReader(filePath))
             {
                 string json = r.ReadToEnd();                
                 Config = JsonConvert.DeserializeObject<T>(json);

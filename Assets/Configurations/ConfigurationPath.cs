@@ -13,6 +13,10 @@ namespace Configurations
         public string GetConfigurationPath()
         {
             string fileName = ReadCommandLineArgs.GetArgumentByKey(ConfigFileArgKey);
+            return GetPath(fileName);
+        }
+        public static string GetPath(string fileName)
+        {
             string filePath = Application.dataPath;
 
             return Path.Combine(filePath, fileName);

@@ -10,12 +10,12 @@ namespace FileParser
     /// <summary>
     /// FileParser that parse xml files
     /// </summary>
-    public class XMLFileParser : IFIleParser
+    public class XMLFileParser : FIleParser
     {        
-        public override T ParseFile<T>(T Output)
+        public override T ParseFile<T>(T Output, string filePath)
         {            
             XmlSerializer xs = new XmlSerializer(typeof(T));
-            FileStream reader = new FileStream(_filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            FileStream reader = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             T Config = (T)xs.Deserialize(reader);
             reader.Close();
             return Config;

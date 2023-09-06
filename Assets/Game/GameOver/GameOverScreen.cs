@@ -14,7 +14,8 @@ public class GameOverScreen : GameState
     string _playerName;
     private void Start()
     {
-        GameOverCanvas.gameObject.SetActive(false);        
+        //GameOverCanvas.gameObject.SetActive(false);
+        EnterState();
     }
     public void ReturnHome()
     {

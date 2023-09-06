@@ -12,8 +12,7 @@ public class PointsManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
-        defaultPointsToAdd = ModeManager.ModeConfigs.PointEachStep;
+    {                
         gameSequence.OnSequenceFinished += AddPoints;
         SetPoints(0);        
     }        

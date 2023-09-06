@@ -5,24 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ModeManager : SingletonBehaviour<ModeManager>
-{
-    [System.Serializable]
-    public class ModeConfig
-    {
-        public int GameButtons;
-        public int PointEachStep;
-        public int GameTime;
-        public bool RepeatMode;
-    }
+{    
     public static string PlayerName;
-    public static ModeConfig modeConfig;
-    public static ModeConfig ModeConfigs
+    public static GameConfigurations.ModeConfig modeConfig;
+    public static GameConfigurations.ModeConfig ModeConfigs
     {
         get
         {
             if (modeConfig == null)
             {
-                modeConfig = new ModeConfig();
+                modeConfig = new GameConfigurations.ModeConfig();
                 modeConfig.GameButtons = 4;
                 modeConfig.GameTime = 40;
                 modeConfig.PointEachStep = 3;

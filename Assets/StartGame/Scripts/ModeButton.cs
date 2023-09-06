@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ModeButton : MonoBehaviour
-{    
+{
+    public static Action<ModeButton> OnModeButtonClick;
     [SerializeField] Button Button;
-    string level;
+    public string level { get; private set; }
 
     public void OnButtonClick()
     {
-        ModeManager.Instance.SelectLevel(level);
+        OnModeButtonClick?.Invoke(this);        
     }
     private void Start()
     {
