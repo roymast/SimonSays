@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class LeaderboardLine : MonoBehaviour
+namespace Leaderboard
 {
-    public TextMeshProUGUI Name;
-    public TextMeshProUGUI Score;
-    public void Highligh()
+    public class LeaderboardLine : MonoBehaviour
     {
-        HighlightLabel(Name);
-        HighlightLabel(Score);
-    }
-    void HighlightLabel(TextMeshProUGUI label)
-    {
-        label.color = Color.green;        
-        label.fontStyle = FontStyles.Underline;        
+        public TextMeshProUGUI Name;
+        public TextMeshProUGUI Score;
+        public void Highligh()
+        {
+            HighlightLabel(Name);
+            HighlightLabel(Score);
+        }
+        void HighlightLabel(TextMeshProUGUI label)
+        {
+            label.color = Color.green;
+            label.fontStyle = FontStyles.Underline;
+        }
     }
 }

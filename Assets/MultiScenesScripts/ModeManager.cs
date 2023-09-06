@@ -1,3 +1,4 @@
+using Configurations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,10 +34,10 @@ public class ModeManager : SingletonBehaviour<ModeManager>
     }
     [SerializeField] TMPro.TMP_InputField NameBox;
 
-    static Configurations.GameConfigurations GameConfigurations;
+    static GameConfigurations GameConfigurations;
     private void Start()
     {
-        GameConfigurations = FindObjectOfType<Configurations.GameConfigurations>();
+        GameConfigurations = FindObjectOfType<GameConfigurations>();
         if (NameBox != null && PlayerName != string.Empty)
             NameBox.text = PlayerName;
     }
