@@ -6,7 +6,7 @@ public class GameSequenceReapetLast : IGameSequenceRepeat
 {    
     public override IEnumerator RepeatSequence(LinkedList<int> buttonSequence)
     {        
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(WaitTimeBeforeRepeat);
         LinkedListNode<int> temp = buttonSequence.Last;
         simonButtons[temp.Value].ClickAnimationAndSound();
         ExitState();

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public abstract class IGameSequenceRepeat : GameState
 {
+    protected float WaitTimeBeforeRepeat = 1;
+    protected float WaitTimeBetweenRepeat = 0.5f;
+
     public Action OnSequenceRepeatFinished;
     public SimonButton[] simonButtons;    
     public GameSequence _GameSequence;    

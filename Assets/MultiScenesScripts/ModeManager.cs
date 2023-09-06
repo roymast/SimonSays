@@ -12,14 +12,9 @@ public class ModeManager : SingletonBehaviour<ModeManager>
     {
         get
         {
+            //just in case there is no config, set default
             if (modeConfig == null)
-            {
-                modeConfig = new GameConfigurations.ModeConfig();
-                modeConfig.GameButtons = 4;
-                modeConfig.GameTime = 40;
-                modeConfig.PointEachStep = 3;
-                modeConfig.RepeatMode = true;
-            }
+                modeConfig = FixGameConfigs.SetConfigDefaultValues().Easy;            
             return modeConfig;
         }
         set { modeConfig = value; }

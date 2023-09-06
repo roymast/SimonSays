@@ -9,6 +9,10 @@ namespace Configurations
     {
         public const int MinButtonsAmount = 2;
         public const int MaxButtonsAmount = 6;
+        const int defaultGameButtons = 4;
+        const int defaultGameTIme = 60;
+        const int defaultPointEachStep = 1;
+        const bool defaultRepeatMode = true;
         public static Root FixButtonsAmount(Root config)
         {
             config.Easy = FixButtonsAmount(config.Easy);
@@ -25,15 +29,18 @@ namespace Configurations
             return mode;
         }
         //Just in case config wan't found
-        public static Root SetConfigDefaultValues(Root gameConfig)
+        public static Root SetConfigDefaultValues()
         {
-            ModeConfig Easy = new ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
-            ModeConfig Medium = new ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
-            ModeConfig Hard = new ModeConfig() { GameButtons = 4, GameTime = 60, PointEachStep = 1, RepeatMode = true };
-            gameConfig.Easy = Easy;
-            gameConfig.Medium = Medium;
-            gameConfig.Hard = Hard;
-            return gameConfig;
+            ModeConfig Easy = new ModeConfig() { GameButtons = defaultGameButtons, GameTime = defaultGameTIme, PointEachStep = defaultPointEachStep, RepeatMode = defaultRepeatMode };
+            ModeConfig Medium = new ModeConfig() { GameButtons = defaultGameButtons, GameTime = defaultGameTIme, PointEachStep = defaultPointEachStep, RepeatMode = defaultRepeatMode };
+            ModeConfig Hard = new ModeConfig() { GameButtons = defaultGameButtons, GameTime = defaultGameTIme, PointEachStep = defaultPointEachStep, RepeatMode = defaultRepeatMode };
+            Root root = new Root()
+            {
+                Easy = Easy,
+                Medium = Medium,
+                Hard = Hard
+            };
+            return root;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Leaderboard
     {
         const string LeaderboardKey = "LeaderBoard";
         [System.Serializable]
-        public class LeaderboardEntryData
+        public class LeaderboardEntryData : IComparer
         {
             public string Name;
             public int Score;
@@ -20,6 +20,13 @@ namespace Leaderboard
                 Name = name;
                 Score = score;
             }
+
+            public int Compare(object x, object y)
+            {
+                return (new CaseInsensitiveComparer()).Compare(((LeaderboardEntryData)x).Score,
+               ((LeaderboardEntryData)y).Score);
+            }
+
             public override string ToString()
             {
                 return $"Name: {Name} Score: {Score}";
@@ -48,16 +55,9 @@ namespace Leaderboard
         }
         public LeaderboardEntryData[] ReadFromLeaderboard()
         {
-            Dictionary<string, LeaderboardEntryData> leaderboard = JsonConvert.DeserializeObject<Dictionary<string, LeaderboardEntryData>>(PlayerPrefs.GetString(LeaderboardKey));
-            LeaderboardEntryData[] leaderboardArray = new LeaderboardEntryData[leaderboard.Count];
-            int i = 0;
-            foreach (var item in leaderboard.Values)
-            {
-                leaderboardArray[i] = item;
-                i++;
-            }
-            leaderboardArray.OrderBy(item => item.Score);
-            leaderboardArray.Reverse();
+            Dictionary<string, LeaderboardEntryData> leaderboard = JsonConvert.DeserializeObject<Dictionary<string, LeaderboardEntryData>>(PlayerPrefs.GetString(LeaderboardKey));            
+            LeaderboardEntryData[] leaderboardArray = leaderboard.Values.ToArray();            
+            Array.Sort(leaderboardArray, (x, y) => y.Score.CompareTo(x.Score));                       
             return leaderboardArray;
         }
     }

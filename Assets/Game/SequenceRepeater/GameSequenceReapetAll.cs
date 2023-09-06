@@ -7,12 +7,12 @@ public class GameSequenceReapetAll : IGameSequenceRepeat
     public override IEnumerator RepeatSequence(LinkedList<int> buttonsSequence)
     {
         LinkedListNode<int> temp = buttonsSequence.First;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(WaitTimeBeforeRepeat);
         while (temp != null)
         {
             simonButtons[temp.Value].ClickAnimationAndSound();
             temp = temp.Next;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(WaitTimeBetweenRepeat);
         }
         ExitState();
     }    

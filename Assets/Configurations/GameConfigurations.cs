@@ -44,7 +44,7 @@ namespace Configurations
             _Config = LoadConfig(_FilePath);
             if (_Config == null)
             {
-                FixGameConfigs.SetConfigDefaultValues(_Config);
+                _Config = FixGameConfigs.SetConfigDefaultValues();
                 Debug.LogError("no config was found, default values were set");
             }
         }
@@ -64,7 +64,7 @@ namespace Configurations
         private void Start()
         {
             if (_Config.Easy == null || _Config.Medium == null || _Config.Hard == null)
-                FixGameConfigs.SetConfigDefaultValues(_Config);            
+                FixGameConfigs.SetConfigDefaultValues();            
         }                
         public ModeConfig GetMode(string mode)
         {
