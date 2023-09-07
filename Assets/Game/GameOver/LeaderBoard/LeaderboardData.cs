@@ -7,8 +7,15 @@ using System;
 
 namespace Leaderboard
 {
+    /// <summary>
+    /// LeaderboardData is designed to read and write to the leaderboard    
+    /// </summary>
     public partial class LeaderboardData
     {
+        //The leaderboard should either contain only limited amount of players or be saved in database
+        //That is because the leaderboard is saved in the PlayerPrefs as a json
+        //and when readed, the data is getting sorted. Right now there is no problem with that, but there will when the leaderboard will increase
+
         const string LeaderboardKey = "LeaderBoard";
         public void WriteToLeaderboard(string playerName, int playerPoints)
         {

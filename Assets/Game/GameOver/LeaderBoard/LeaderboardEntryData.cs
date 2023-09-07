@@ -2,6 +2,9 @@
 
 namespace Leaderboard
 {
+    /// <summary>
+    /// Single player data in leaderboard
+    /// </summary>
     [System.Serializable]
     public class LeaderboardEntryData : IComparer
     {

@@ -1,5 +1,8 @@
 ﻿namespace Configurations
 {
+    /// <summary>
+    /// GameConfigurations saves all of the configurations data
+    /// </summary>
     public partial class GameConfigurations
     {
         [System.Serializable]

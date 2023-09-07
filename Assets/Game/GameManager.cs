@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// GameManager is managing the flow of the game
+/// </summary>
 public class GameManager : SingletonBehaviour<GameManager>
 {
     public Action OnGameOver;

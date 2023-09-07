@@ -6,17 +6,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Leaderboard;
 
+/// <summary>
+/// GameOverScreen is a GameState of game over. It displays the leaderboard and whether the player win or lose
+/// </summary>
 public class GameOverScreen : GameState
 {
     [SerializeField] Canvas GameOverCanvas;    
     [SerializeField] TextMeshProUGUI WinLoseText;    
     [SerializeField] LeaderboardScreen leaderboard;
-    string _playerName;
-    private void Start()
-    {
-        //GameOverCanvas.gameObject.SetActive(false);
-        EnterState();
-    }
+    string _playerName;    
     public void ReturnHome()
     {
         SceneManager.LoadScene("StartScreen");

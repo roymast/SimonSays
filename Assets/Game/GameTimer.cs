@@ -4,6 +4,10 @@ using UnityEngine;
 using TMPro;
 using System;
 
+/// <summary>
+/// GameTimer handles the time of the player and display it to the user
+/// When time is over, it notify by OnTimeUp action
+/// </summary>
 public class GameTimer : MonoBehaviour
 {
     public Action OnTimeUp;

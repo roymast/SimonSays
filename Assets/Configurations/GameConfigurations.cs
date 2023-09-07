@@ -8,6 +8,9 @@ using FileParser;
 
 namespace Configurations
 {
+    /// <summary>
+    /// GameConfigurations read and holds the game configurations.
+    /// </summary>
     public partial class GameConfigurations : MonoBehaviour
     {
         public static GameConfigurations Instance { get; private set; }
@@ -22,14 +25,18 @@ namespace Configurations
                 Destroy(this);
                 return;
             }            
-            Instance = this;
+            Instance = this;                        
             _FilePath = configurationPath.GetConfigurationPath();
             _Config = LoadConfig(_FilePath);
-            if (_Config == null || _Config.Easy == null || _Config.Medium == null || _Config.Hard == null)
+            if (isConfigNull(_Config))
             {
                 _Config = FixGameConfigs.SetConfigDefaultValues();
                 Debug.LogError("no config was found, default values were set");
-            }
+            }            
+        }
+        bool isConfigNull(Root config)
+        {
+            return config == null || config.Easy == null || config.Medium == null || config.Hard != null;
         }
         public static Root LoadConfig(string filePath)
         {

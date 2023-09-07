@@ -5,6 +5,9 @@ using static Configurations.GameConfigurations;
 
 namespace Configurations
 {
+    /// <summary>
+    /// FixGameConfigs fix game config data. For now it fix the amount of buttons to the limited amount
+    /// </summary>
     public class FixGameConfigs
     {
         public const int MinButtonsAmount = 2;

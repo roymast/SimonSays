@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// ModeManager holds the current game configuration and the player name. 
+/// This class should be in every scene that need to have game configurations
+/// </summary>
 public class ModeManager : SingletonBehaviour<ModeManager>
 {    
     public static string PlayerName;

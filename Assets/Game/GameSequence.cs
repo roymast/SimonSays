@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// GameSequence is listening the player's button clicks, 
+/// checking whether it's the right button of the sequence, 
+/// and adds to the sequence
+/// </summary>
 public class GameSequence : GameState
 {
     public Action OnSequenceFinished;

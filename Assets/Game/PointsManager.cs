@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// PointsManager handles the points of the player and display it to the user
+/// </summary>
 public class PointsManager : MonoBehaviour
 {
     [SerializeField] GameSequence gameSequence;

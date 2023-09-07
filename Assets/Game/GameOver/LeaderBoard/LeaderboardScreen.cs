@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Leaderboard
 {
+    /// <summary>
+    /// LeaderboardScreen display to the screen the leaderboard
+    /// </summary>
     public class LeaderboardScreen : MonoBehaviour
     {
         LeaderboardData LeaderboardData;

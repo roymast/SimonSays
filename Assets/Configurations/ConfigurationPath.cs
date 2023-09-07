@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Configurations
 {
+    /// <summary>
+    /// ConfigurationPath will get you the path to the configuration after reading it from the command line
+    /// </summary>
     public class ConfigurationPath : MonoBehaviour
     {
         const string ConfigFileArgKey = "-configFile";

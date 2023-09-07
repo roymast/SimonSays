@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// IGameSequenceRepeat is an abstract class
+/// His children should implement repeating the game sequence
+/// </summary>
 public abstract class IGameSequenceRepeat : GameState
 {
     protected float WaitTimeBeforeRepeat = 1;

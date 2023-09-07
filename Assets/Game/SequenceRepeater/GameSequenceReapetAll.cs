@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Repeat all the buttons that pressed
+/// </summary>
 public class GameSequenceReapetAll : IGameSequenceRepeat
 {    
     public override IEnumerator RepeatSequence(LinkedList<int> buttonsSequence)

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// GameSequenceRepeatFactory is a factory for GameSequenceRepeat
+/// </summary>
 public class GameSequenceRepeatFactory
 {    
     SimonButton[] simonButtons;

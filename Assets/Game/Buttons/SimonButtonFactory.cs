@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Factory of simonButtons
+/// </summary>
 public class SimonButtonFactory : MonoBehaviour
 {
     [SerializeField] Transform buttonsContainer;

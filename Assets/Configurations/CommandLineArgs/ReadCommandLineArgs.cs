@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ReadCommandLineArgs, as his name suggests, read command line arguments
+/// </summary>
 public class ReadCommandLineArgs : MonoBehaviour
 {
 #if UNITY_EDITOR
