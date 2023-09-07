@@ -17,11 +17,11 @@ public class GameOverScreen : GameState
     string _playerName;    
     public void ReturnHome()
     {
-        SceneManager.LoadScene("StartScreen");
+        SceneSwitcher.LoadScene("StartScreen");        
     }
     public void Restart()
     {
-        SceneManager.LoadScene("Game");
+        SceneSwitcher.LoadScene("Game");        
     }
     void InsertCurrentPlayerScore(string playerName, int playerScore)
     {

@@ -11,19 +11,27 @@ using UnityEngine;
 public class GameSequence : GameState
 {
     public Action OnSequenceFinished;
-    public Action OnWrongSequence;
-    [SerializeField] GameInit gameInit;
+    public Action OnWrongSequence;    
     public LinkedList<int> buttonsSequence { get; private set; }
+    public LinkedList<int> ButtonsSequence 
+    { 
+        get 
+        {
+            if (buttonsSequence == null || buttonsSequence.Count < 1)
+                InitSequence();
+            return buttonsSequence;                
+        }
+    }
     LinkedListNode<int> current;
     // Start is called before the first frame update
     private void Awake()
     {                    
-        GameManager.Instance.OnGameOver += () => ExitState();
+        GameManager.Instance.OnGameOver += () => ExitState();        
     }
     public void InitSequence()
     {
         buttonsSequence = new LinkedList<int>();
-       AddToSequence();
+        AddToSequence();
     }
     public override void EnterState()
     {        
@@ -47,6 +55,7 @@ public class GameSequence : GameState
         else
         {
             AddToSequence();
+            ExitState();
             OnSequenceFinished?.Invoke();
         }
     }               
@@ -59,6 +68,6 @@ public class GameSequence : GameState
     }
     int GetRandomButton()
     {
-        return UnityEngine.Random.Range(0, gameInit.GetButtonsAmount);
+        return UnityEngine.Random.Range(0, GameManager.Instance.GetButtonsAmount);
     }    
 }

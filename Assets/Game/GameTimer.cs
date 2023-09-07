@@ -13,16 +13,15 @@ public class GameTimer : MonoBehaviour
     public Action OnTimeUp;
     public int totalTime;
     float startTime;
-
-    [SerializeField] GameManager GameManager;
+    
     [SerializeField] TextMeshProUGUI timeText;
     public bool isTimerUp { get { return totalTime <= 0; } }
 
     private void Start()
     {
-        totalTime = GameInit.Instance.currentConfig.GameTime;
+        totalTime = GameManager.Instance.currentConfig.GameTime;
         startTime = Time.time;
-        GameManager.OnGameOver += () => enabled = false;
+        GameManager.Instance.OnGameOver += () => enabled = false;
     }
     // Update is called once per frame
     void Update()

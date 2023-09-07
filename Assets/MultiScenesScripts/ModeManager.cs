@@ -39,7 +39,7 @@ public class ModeManager : SingletonBehaviour<ModeManager>
         PlayerName = NameBox.text;
 
         ModeConfigs = GameConfigurations.GetMode(level);
-        SceneManager.LoadScene("Game");
+        SceneSwitcher.LoadScene("Game");
     }
     public void SetPlayerName(string name)
     {

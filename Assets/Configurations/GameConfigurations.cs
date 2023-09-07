@@ -31,12 +31,12 @@ namespace Configurations
             if (isConfigNull(_Config))
             {
                 _Config = FixGameConfigs.SetConfigDefaultValues();
-                Debug.LogError("no config was found, default values were set");
+                Debug.LogError("An error occurred while loading config, default values were set");
             }            
         }
         bool isConfigNull(Root config)
         {
-            return config == null || config.Easy == null || config.Medium == null || config.Hard != null;
+            return config == null || config.Easy == null || config.Medium == null || config.Hard == null;
         }
         public static Root LoadConfig(string filePath)
         {

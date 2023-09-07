@@ -6,14 +6,13 @@ using TMPro;
 using System;
 
 public class ModeButton : MonoBehaviour
-{
-    public static Action<ModeButton> OnModeButtonClick;
+{    
     [SerializeField] Button Button;
     public string level { get; private set; }
 
     public void OnButtonClick()
     {
-        OnModeButtonClick?.Invoke(this);        
+        ModeManager.Instance.SelectLevel(level);        
     }
     private void Start()
     {
