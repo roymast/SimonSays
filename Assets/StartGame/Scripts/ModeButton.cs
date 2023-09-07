@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
+// Button for picking mode
 public class ModeButton : MonoBehaviour
 {    
     [SerializeField] Button Button;

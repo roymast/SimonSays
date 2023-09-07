@@ -7,8 +7,11 @@ namespace FileParser
     /// <summary>
     /// FileParser childern are designed to parse files to wanted objects
     /// </summary>
-    public abstract class FIleParser
+    /// 
+
+    // This is an interface so I'll keep the design as simple and flexible as possible
+    public interface IFIleParser
     {        
-        public abstract T ParseFile<T>(T Output, string filePath);
+        public T ParseFile<T>(T Output, string filePath);
     }
 }

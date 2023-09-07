@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// SingletonBehaviour make every class the derives from it a singleton
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">The type of the class</typeparam>
 public class SingletonBehaviour<T> : MonoBehaviour where T: SingletonBehaviour<T>
 {
     public static T Instance { get; protected set; }

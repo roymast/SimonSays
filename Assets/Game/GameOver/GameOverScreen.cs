@@ -9,6 +9,9 @@ using Leaderboard;
 /// <summary>
 /// GameOverScreen is a GameState of game over. It displays the leaderboard and whether the player win or lose
 /// </summary>
+/// 
+
+// GameOverScreen derives from GameState because it is part of the games states
 public class GameOverScreen : GameState
 {
     [SerializeField] Canvas GameOverCanvas;    

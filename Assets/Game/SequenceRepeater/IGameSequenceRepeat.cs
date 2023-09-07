@@ -7,7 +7,11 @@ using UnityEngine;
 /// IGameSequenceRepeat is an abstract class
 /// His children should implement repeating the game sequence
 /// </summary>
-public abstract class IGameSequenceRepeat : GameState
+/// 
+
+// IGameSequenceRepeat derives from GameState because it is part of the games states
+// IGameSequenceRepeat is an abstract class so it will provide default behavior and shared data among derived classes
+public abstract class IGameSequenceRepeat : GameState    
 {
     protected float WaitTimeBeforeRepeat = 1;
     protected float WaitTimeBetweenRepeat = 0.5f;

@@ -8,10 +8,15 @@ using UnityEngine;
 /// checking whether it's the right button of the sequence, 
 /// and adds to the sequence
 /// </summary>
+/// 
+// GameSequence derives from GameState because it is part of the games states
 public class GameSequence : GameState
 {
     public Action OnSequenceFinished;
-    public Action OnWrongSequence;    
+    public Action OnWrongSequence;
+    // ButtonSequence is a LinkedList of int where the value is the index of the button
+    // I decided to make it indexes so it will be consistant
+    // I decided to make it LinkedList so it will be able to grow as the player going without re-allocating
     public LinkedList<int> buttonsSequence { get; private set; }
     public LinkedList<int> ButtonsSequence 
     { 

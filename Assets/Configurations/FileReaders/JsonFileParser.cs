@@ -9,9 +9,9 @@ namespace FileParser
     /// <summary>
     /// FileParser that parse json files
     /// </summary>
-    public class JsonFileParser : FIleParser
+    public class JsonFileParser : IFIleParser
     {                     
-        public override T ParseFile<T>(T Output, string filePath)
+        public T ParseFile<T>(T Output, string filePath)
         {
             T Config;
             using (StreamReader r = new StreamReader(filePath))

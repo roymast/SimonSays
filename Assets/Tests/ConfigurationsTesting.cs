@@ -14,7 +14,7 @@ public class ConfigurationsTesting
     {
         // test to make sure the general logic of getting FileParser by the name of the file is good
         string path = "Configurations/Config.json";        
-        FIleParser iFIleParser = FileParserFactory.GetFileReder(path.Split('.')[1]);        
+        IFIleParser iFIleParser = FileParserFactory.GetFileReder(path.Split('.')[1]);        
 
         Assert.IsTrue(iFIleParser is JsonFileParser);
     }
@@ -23,7 +23,7 @@ public class ConfigurationsTesting
     {
         // test to make sure the general logic of getting FileParser by the name of the file is good
         string path = "Configurations/Config.xml";
-        FIleParser iFIleParser = FileParserFactory.GetFileReder(path.Split('.')[1]);
+        IFIleParser iFIleParser = FileParserFactory.GetFileReder(path.Split('.')[1]);
 
         Assert.IsTrue(iFIleParser is XMLFileParser);
     }
@@ -31,7 +31,7 @@ public class ConfigurationsTesting
     public void file_parser_factory_test_null()
     {
         string path = "Config.txt";
-        FIleParser iFIleParser = FileParserFactory.GetFileReder(path.Split('.')[1]);
+        IFIleParser iFIleParser = FileParserFactory.GetFileReder(path.Split('.')[1]);
 
         Assert.IsNull(iFIleParser);
     }

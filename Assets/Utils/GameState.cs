@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// GameState is an abstract class.
-/// His children are part of a state machine of the game
+/// The children are part of a state machine of the game
 /// </summary>
 public abstract class GameState : MonoBehaviour
 {
