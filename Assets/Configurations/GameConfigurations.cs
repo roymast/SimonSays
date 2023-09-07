@@ -8,29 +8,12 @@ using FileParser;
 
 namespace Configurations
 {
-    public class GameConfigurations : MonoBehaviour
+    public partial class GameConfigurations : MonoBehaviour
     {
         public static GameConfigurations Instance { get; private set; }
-        [SerializeField] string _FilePath;
-        [SerializeField] FIleParser _FIleParser;
+        [SerializeField] string _FilePath;        
         [SerializeField] ConfigurationPath configurationPath;
         [SerializeField] Root _Config = new Root();        
-
-        [System.Serializable]
-        public class Root
-        {
-            public ModeConfig Easy;
-            public ModeConfig Medium;
-            public ModeConfig Hard;
-        }
-        [System.Serializable]
-        public class ModeConfig
-        {
-            public int GameButtons;
-            public int PointEachStep;
-            public int GameTime;
-            public bool RepeatMode;
-        }
 
         void Awake()
         {
@@ -42,7 +25,7 @@ namespace Configurations
             Instance = this;
             _FilePath = configurationPath.GetConfigurationPath();
             _Config = LoadConfig(_FilePath);
-            if (_Config == null)
+            if (_Config == null || _Config.Easy == null || _Config.Medium == null || _Config.Hard == null)
             {
                 _Config = FixGameConfigs.SetConfigDefaultValues();
                 Debug.LogError("no config was found, default values were set");
@@ -52,20 +35,15 @@ namespace Configurations
         {
             if (string.IsNullOrEmpty(filePath))
                 return null;
-            
+
             if (filePath.Split('.').Length != 2)
                 return null;
 
-            FIleParser fileParser = FileParserFactory.GetFileReder(filePath.Split(".")[1]);            
+            FIleParser fileParser = FileParserFactory.GetFileReder(filePath.Split(".")[1]);
             Root config = fileParser.ParseFile(new Root(), filePath);
             config = FixGameConfigs.FixButtonsAmount(config);
             return config;
-        }        
-        private void Start()
-        {
-            if (_Config.Easy == null || _Config.Medium == null || _Config.Hard == null)
-                FixGameConfigs.SetConfigDefaultValues();            
-        }                
+        }
         public ModeConfig GetMode(string mode)
         {
             switch (mode.ToLower())

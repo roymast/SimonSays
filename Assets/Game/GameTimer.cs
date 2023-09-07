@@ -6,14 +6,17 @@ using System;
 
 public class GameTimer : MonoBehaviour
 {
-    [SerializeField] GameManager GameManager;
     public Action OnTimeUp;
-    [SerializeField] TextMeshProUGUI timeText;
     public int totalTime;
     float startTime;
+
+    [SerializeField] GameManager GameManager;
+    [SerializeField] TextMeshProUGUI timeText;
     public bool isTimerUp { get { return totalTime <= 0; } }
+
     private void Start()
     {
+        totalTime = GameInit.Instance.currentConfig.GameTime;
         startTime = Time.time;
         GameManager.OnGameOver += () => enabled = false;
     }

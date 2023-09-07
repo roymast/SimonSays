@@ -12,8 +12,7 @@ public abstract class IGameSequenceRepeat : GameState
     public SimonButton[] simonButtons;    
     public GameSequence _GameSequence;    
                             
-    public abstract IEnumerator RepeatSequence(LinkedList<int> buttonsSequence);
-
+    public abstract IEnumerator RepeatSequence(LinkedList<int> buttonsSequence);    
     public override void EnterState()
     {
         StartCoroutine(RepeatSequence(_GameSequence.buttonsSequence));

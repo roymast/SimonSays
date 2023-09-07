@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class ModeManager : SingletonBehaviour<ModeManager>
 {    
     public static string PlayerName;
-    public static GameConfigurations.ModeConfig modeConfig;
-    public static GameConfigurations.ModeConfig ModeConfigs
+    private static GameConfigurations.ModeConfig modeConfig;
+    public GameConfigurations.ModeConfig ModeConfigs
     {
         get
         {

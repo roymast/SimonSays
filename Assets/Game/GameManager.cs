@@ -16,16 +16,18 @@ public class GameManager : SingletonBehaviour<GameManager>
     public string playerName { get; private set; }        
     
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
+        GameInit = GameInit.Instance;
         playerName = ModeManager.PlayerName;
         GameTimer.OnTimeUp += OnTimeUp;
         GameSequence.OnWrongSequence += OnWrongSequence;
-        GameSequence.OnSequenceFinished += OnSequenceFinished;        
-        GameSequenceRepeat = GameInit.gameSequenceRepeat;
-        GameSequenceRepeat.OnSequenceRepeatFinished += OnSequenceRepeatFinished;
-        GameSequenceRepeat.EnterState();        
-    }
+        GameSequence.OnSequenceFinished += OnSequenceFinished;
+        GameSequence.InitSequence();
+        GameSequenceRepeat = GameInit.GameSequenceRepeat;
+        GameSequenceRepeat.OnSequenceRepeatFinished += OnSequenceRepeatFinished;        
+        GameSequenceRepeat.EnterState();
+    }    
     void OnSequenceFinished()
     {
         GameSequence.ExitState();

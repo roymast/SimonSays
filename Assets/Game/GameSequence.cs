@@ -9,13 +9,16 @@ public class GameSequence : GameState
     public Action OnWrongSequence;
     [SerializeField] GameInit gameInit;
     public LinkedList<int> buttonsSequence { get; private set; }
-    LinkedListNode<int> current;    
+    LinkedListNode<int> current;
     // Start is called before the first frame update
-    void Awake()
-    {
-        buttonsSequence = new LinkedList<int>();        
-        AddToSequence();
+    private void Awake()
+    {                    
         GameManager.Instance.OnGameOver += () => ExitState();
+    }
+    public void InitSequence()
+    {
+        buttonsSequence = new LinkedList<int>();
+       AddToSequence();
     }
     public override void EnterState()
     {        

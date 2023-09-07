@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSequenceRepeatFactory
-{
-    GameSequence GameSequence;
+{    
     SimonButton[] simonButtons;
     bool isRepeat;
 
-
-    public GameSequenceRepeatFactory(SimonButton[] simonButtons, bool isRepeat, GameSequence gameSequence)
+    public GameSequenceRepeatFactory(SimonButton[] simonButtons, bool isRepeat)
     {
         this.simonButtons = simonButtons;
-        this.isRepeat = isRepeat;
-        this.GameSequence = gameSequence;
+        this.isRepeat = isRepeat;        
     }
-    public IGameSequenceRepeat GetGameSequenceRepeat(GameObject _GameObject)
+    public IGameSequenceRepeat GetGameSequenceRepeat(GameObject _GameObject, GameSequence gameSequence)
     {
         IGameSequenceRepeat gameRepeat;
         if (isRepeat)
             gameRepeat = _GameObject.AddComponent<GameSequenceReapetAll>();
         else
-            gameRepeat = _GameObject.AddComponent<GameSequenceReapetLast>();
-        gameRepeat._GameSequence = this.GameSequence;
+            gameRepeat = _GameObject.AddComponent<GameSequenceReapetLast>();        
         gameRepeat.simonButtons = this.simonButtons;
+        gameRepeat._GameSequence = gameSequence;
         return gameRepeat;
     }
 }

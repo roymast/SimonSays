@@ -7,33 +7,13 @@ using System;
 
 namespace Leaderboard
 {
-    public class LeaderboardData
+    public partial class LeaderboardData
     {
         const string LeaderboardKey = "LeaderBoard";
-        [System.Serializable]
-        public class LeaderboardEntryData : IComparer
-        {
-            public string Name;
-            public int Score;
-            public LeaderboardEntryData(string name, int score)
-            {
-                Name = name;
-                Score = score;
-            }
-
-            public int Compare(object x, object y)
-            {
-                return (new CaseInsensitiveComparer()).Compare(((LeaderboardEntryData)x).Score,
-               ((LeaderboardEntryData)y).Score);
-            }
-
-            public override string ToString()
-            {
-                return $"Name: {Name} Score: {Score}";
-            }
-        }
         public void WriteToLeaderboard(string playerName, int playerPoints)
         {
+            if (string.IsNullOrEmpty(playerName))   //should not happen, but just in case
+                return;
 
             Dictionary<string, LeaderboardEntryData> Base = new Dictionary<string, LeaderboardEntryData>();
             if (!PlayerPrefs.HasKey(LeaderboardKey))

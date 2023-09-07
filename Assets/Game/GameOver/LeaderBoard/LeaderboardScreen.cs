@@ -10,7 +10,7 @@ namespace Leaderboard
         LeaderboardData LeaderboardData;
         [SerializeField] LeaderboardLine LeaderboardLinePrefab;
         [SerializeField] Transform LeaderboardContainer;
-        LeaderboardData.LeaderboardEntryData[] leaderBoardData;
+        LeaderboardEntryData[] leaderBoardData;
         LeaderboardLine[] leaderboardLines;
         public void InsertNewPlayerScore(string playerName, int playerScore)
         {
@@ -40,7 +40,7 @@ namespace Leaderboard
         {
             LeaderboardData = new LeaderboardData();
         }
-        LeaderboardLine[] CreateAllLeaderboardLines(LeaderboardData.LeaderboardEntryData[] leaderBoard)
+        LeaderboardLine[] CreateAllLeaderboardLines(LeaderboardEntryData[] leaderBoard)
         {
             leaderboardLines = new LeaderboardLine[leaderBoard.Length];
             for (int i = 0; i < leaderBoard.Length; i++)
@@ -48,22 +48,12 @@ namespace Leaderboard
 
             return leaderboardLines;
         }
-        LeaderboardLine InstantiateNewLeaderboardLine(LeaderboardData.LeaderboardEntryData leaderboardEntryData)
+        LeaderboardLine InstantiateNewLeaderboardLine(LeaderboardEntryData leaderboardEntryData)
         {
             LeaderboardLine newLeaderboardLine = Instantiate(LeaderboardLinePrefab, LeaderboardContainer);
             newLeaderboardLine.Name.text = leaderboardEntryData.Name;
             newLeaderboardLine.Score.text = leaderboardEntryData.Score.ToString();
             return newLeaderboardLine;
-        }
-        void PrintLeaderBoard(LeaderboardData.LeaderboardEntryData[] orderedEnumerable)
-        {
-            string s = "";
-            foreach (var item in orderedEnumerable)
-            {
-                s += item.ToString();
-                s += "\n";
-            }
-            Debug.Log(s);
-        }
+        }        
     }
 }
